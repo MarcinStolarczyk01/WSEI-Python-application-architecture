@@ -65,7 +65,6 @@ def log_time(filename: str):
             func(*args, **kwargs)
 
             exec_time = time.time() - start
-            date = datetime.date.today()
 
             logging.basicConfig(level='INFO', format='%(asctime)s %(name)s %(levelname)s %(message)s',
                                 filename=filename, filemode='a', datefmt='%D : %H:%M:%S')
