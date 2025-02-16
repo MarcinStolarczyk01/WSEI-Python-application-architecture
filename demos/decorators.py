@@ -6,18 +6,18 @@ import datetime
 
 def decorator1(func):
     def say_hello():
-        print('Entry from the decorator 1')
+        print("Entry from the decorator 1")
         func()
-        print('Exit from the decorator 1')
+        print("Exit from the decorator 1")
 
     return say_hello
 
 
 def decorator2(func):
     def say_hello():
-        print('Entry from the decorator 2')
+        print("Entry from the decorator 2")
         func()
-        print('Exit from the decorator 2')
+        print("Exit from the decorator 2")
 
     return say_hello
 
@@ -26,8 +26,10 @@ def timer(func):
     def wrapper(*args, **kwargs):
         start = time.time()
         func(*args, **kwargs)
-        logging.info(f"""
-        Execution time for {func.__name__} execution time: {(time.time() - start):.5f} seconds""")
+        logging.info(
+            f"""
+        Execution time for {func.__name__} execution time: {(time.time() - start):.5f} seconds"""
+        )
 
     return wrapper
 
@@ -36,7 +38,7 @@ def decorator_power_arg(power: int):
     def decorator_power(func):
         def to_power(*args, **kwargs):
             arguments = [arg for arg in args] + [kwarg for kwarg in kwargs.values()]
-            arguments = [arg ** power for arg in arguments]
+            arguments = [arg**power for arg in arguments]
             func(*arguments)
 
         return to_power
@@ -66,10 +68,15 @@ def log_time(filename: str):
 
             exec_time = time.time() - start
 
-            logging.basicConfig(level='INFO', format='%(asctime)s %(name)s %(levelname)s %(message)s',
-                                filename=filename, filemode='a', datefmt='%D : %H:%M:%S')
+            logging.basicConfig(
+                level="INFO",
+                format="%(asctime)s %(name)s %(levelname)s %(message)s",
+                filename=filename,
+                filemode="a",
+                datefmt="%D : %H:%M:%S",
+            )
             logger = logging.getLogger()
-            logger.info(f'Function {func.__name__} exec time: {exec_time:.7f}')
+            logger.info(f"Function {func.__name__} exec time: {exec_time:.7f}")
 
         return wrapper
 
@@ -77,9 +84,9 @@ def log_time(filename: str):
 
 
 # @list_len
-@log_time(filename='decorators.log')
+@log_time(filename="decorators.log")
 def mock_func(a: list, b: list, c=None, d=None, e=None):
-    print('mock func doing sth...')
+    print("mock func doing sth...")
 
 
 # @decorator1
@@ -87,12 +94,12 @@ def mock_func(a: list, b: list, c=None, d=None, e=None):
 @timer
 @decorator_power_arg(3)
 def summing(a, b):
-    print(f'summing: {a, b} = {a + b}')
+    print(f"summing: {a, b} = {a + b}")
 
 
 def main():
     mock_func([1, 2, 3], [], [111], e=0)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

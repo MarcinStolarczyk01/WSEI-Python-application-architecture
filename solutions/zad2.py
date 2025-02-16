@@ -4,6 +4,7 @@ Użyj metod magicznych __iter__() i __next__(). Liczby n i a powinny być
 parametrami wejściowymi generatora.
 """
 
+
 class PowerGen:
     def __init__(self, a, n: int):
         self._n = n
@@ -19,6 +20,7 @@ class PowerGen:
         result = self._a**self._current
         self._current += 1
         return result
+
 
 if __name__ == "__main__":
     gen = PowerGen(2, 3)

@@ -12,16 +12,18 @@ class Collatza:
         if self._prev == 1:
             raise StopIteration
         if abs(self._prev % 2):
-            current = 3*self._prev + 1
+            current = 3 * self._prev + 1
         else:
-            current = round(self._prev /2)
+            current = round(self._prev / 2)
 
         self._prev = current
         return current
+
 
 def main():
     for num in Collatza(6):
         print(num)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     main()
